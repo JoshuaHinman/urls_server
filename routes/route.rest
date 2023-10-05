@@ -1,0 +1,15 @@
+GET http://localhost:9876/
+
+###
+
+GET http://localhost:9876/basket
+
+###
+
+POST http://localhost:9876/newURl
+Content-Type: application/json
+
+{
+  "sourceUrl": "https://nba.com",
+  "shortUrl": "basket"
+}
