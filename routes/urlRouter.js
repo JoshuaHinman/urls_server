@@ -33,6 +33,11 @@ router.get('/', async (req, res) => {
     res.json(result.rows);
   } catch (err) {
     console.error(err);
+    console.log(process.env.PGUSER,
+    process.env.PGPASSWORD,
+    process.env.PGHOST,
+    process.env.PGPORT,
+    process.env.PGDATABASE);
     res.status(500).send(err);
   }
 });
