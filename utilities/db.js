@@ -18,6 +18,7 @@ dotenv.config();
 //   port: process.env.PGPORT,
 //   database: process.env.PGDATABASE
 // });
+
 const connectionString = process.env.DB_CONNECTION;
 console.log(connectionString);
 const pool = new Pool ({

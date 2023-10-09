@@ -7,7 +7,7 @@ router.post('/newUser' , async (req, res) => {
 
 });
 
-//create new short url
+//create new shorturl
 router.post('/newUrl' , async (req, res) => {
   const sourceUrl = req.body.sourceUrl; //TODO: change 'sourceUrl' to 'longUrl'
   const shortUrl = req.body.shortUrl;
@@ -41,8 +41,10 @@ router.get('/', async (req, res) => {
 router.get('/:shortUrl', async (req, res) => {
   const shortUrl = req.params.shortUrl;
   try {
-    const result = await dbQuery("SELECT * from urls where shorturl = $1", [shortUrl]);
-    res.json(result.rows);
+    const result = await dbQuery("SELECT longurl from urls where shorturl = $1", [shortUrl]);
+    const longurl = result.rows[0].longurl;
+    console.log(longurl);
+    res.redirect("https://" + longurl);
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
