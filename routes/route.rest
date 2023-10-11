@@ -10,6 +10,6 @@ POST http://localhost:9876/newURl
 Content-Type: application/json
 
 {
-  "sourceUrl": "https://nba.com",
-  "shortUrl": "basket"
+  "longurl": "nba.com",
+  "shorturl": "basket"
 }

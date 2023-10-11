@@ -9,15 +9,15 @@ router.post('/newUser' , async (req, res) => {
 
 //create new shorturl
 router.post('/newUrl' , async (req, res) => {
-  const sourceUrl = req.body.sourceUrl; //TODO: change 'sourceUrl' to 'longUrl'
-  const shortUrl = req.body.shortUrl;
+  const longurl = req.body.longurl;
+  const shorturl = req.body.shorturl;
 
-  if (!sourceUrl) res.send("Error: Invalid Source Url");
-  if (!shortUrl) res.send("Error: invalid Short Url");
+  if (!longurl) res.send("Error: Invalid Source Url");
+  if (!shorturl) res.send("Error: invalid Short Url");
 
   try {
     const result = await dbQuery("INSERT INTO urls ( shorturl, longurl) VALUES ($1, $2)",
-                            [shortUrl, sourceUrl]);
+                            [shorturl, longurl]);
     res.json(result.fields);
   } catch (err) {
     console.error(err);
@@ -38,10 +38,10 @@ router.get('/', async (req, res) => {
 });
 
 //get source url
-router.get('/:shortUrl', async (req, res) => {
-  const shortUrl = req.params.shortUrl;
+router.get('/:shorturl', async (req, res) => {
+  const shorturl = req.params.shorturl;
   try {
-    const result = await dbQuery("SELECT longurl from urls where shorturl = $1", [shortUrl]);
+    const result = await dbQuery("SELECT longurl from urls where shorturl = $1", [shorturl]);
     const longurl = result.rows[0].longurl;
     console.log(longurl);
     res.redirect("https://" + longurl);
