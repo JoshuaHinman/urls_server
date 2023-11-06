@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
     res.status(500).send(err);
   }
 });
-
+      
 //get source url
 router.get('/:shorturl', async (req, res) => {
   const shorturl = req.params.shorturl;
