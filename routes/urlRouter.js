@@ -2,11 +2,6 @@ import dbQuery from '../utilities/db.js';
 import express from 'express';
 const router = express.Router();
 
-//create new user
-router.post('/newUser' , async (req, res) => {
-
-});
-
 //create new shorturl
 router.post('/newUrl' , async (req, res) => {
   const longurl = req.body.longurl;

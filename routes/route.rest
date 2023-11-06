@@ -13,3 +13,22 @@ Content-Type: application/json
   "longurl": "nba.com",
   "shorturl": "basket"
 }
+
+###
+post http://localhost:9876/user/signup
+Content-Type: application/json
+
+{
+  "name": "Joshu",
+  "password": "test",
+  "email": "josh.com"
+}
+
+###
+get http://localhost:9876/user/login
+Content-Type: application/json
+
+{
+  "name": "Josh",
+  "password": "blasket"
+}
