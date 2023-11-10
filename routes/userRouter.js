@@ -1,10 +1,14 @@
 import dbQuery from '../utilities/db.js';
-import express from 'express'
+import express from 'express';
 const router = express.Router();
 
 //signup new user
 router.post('/signup', async (req, res) => {
   const { name, password, email } = req.body;
+
+  if (!name) res.send("Error: Invalid name");
+  if (!password) res.send("Error: invalid password");
+  if (!email) res.send("Error: Invalid email");
 
   try {
     const result = await dbQuery("INSERT INTO users ( name, password, email) VALUES ($1, $2, $3)",
@@ -17,7 +21,7 @@ router.post('/signup', async (req, res) => {
 });
 
 //login user
-router.get('/login', async (req, res) => {
+router.post('/login', async (req, res) => {
   const { name, password } = req.body;
 
   try {
