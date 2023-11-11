@@ -19,16 +19,34 @@ post http://localhost:9876/user/signup
 Content-Type: application/json
 
 {
-  "name": "Joshu",
+  "name": "Jojo",
   "password": "test",
   "email": "josh.com"
 }
 
 ###
-get http://localhost:9876/user/login
+post http://localhost:9876/user/login
 Content-Type: application/json
 
 {
-  "name": "Josh",
-  "password": "blasket"
+  "name": "Jojo",
+  "password": "test"
+}
+
+### //wrong username
+post http://localhost:9876/user/login
+Content-Type: application/json
+
+{
+  "name": "Mojo",
+  "password": "est"
+}
+
+### //wrong password
+post http://localhost:9876/user/login
+Content-Type: application/json
+
+{
+  "name": "Jojo",
+  "password": "est"
 }

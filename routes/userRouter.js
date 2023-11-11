@@ -25,8 +25,13 @@ router.post('/login', async (req, res) => {
   const { name, password } = req.body;
 
   try {
-    const result = await dbQuery("select * from users where name = $1 and password = $2", [name, password]);
-    res.json(result.rows[0]);
+    const result = await dbQuery("select * from users where name = $1", [name]);
+    if (result.rows[0]) {
+      const user = result.rows[0];
+      if(user.password === password) {
+        res.json(user);
+      } else res.json({message: "Password incorrect"})
+    } else res.send({message: "User name not found"});
   } catch (err) {
     console.error(err);
     res.status(500).send(err);
